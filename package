@@ -1,0 +1,35 @@
+function quality = imageQualityFunction(image, modelParamsPath)
+    % 这个函数封装了原始example.m中的所有功能
+    % 参数:
+    %   image - 可以是图像矩阵或者图像文件路径
+    %   modelParamsPath - 模型参数文件的路径，默认为'modelparameters.mat'
+    
+    % 设置默认参数路径（如果未提供）
+    if nargin < 2
+        modelParamsPath = 'modelparameters.mat';
+    end
+    
+    % 加载模型参数
+    params = load(modelParamsPath);
+    
+    % 确保变量名与你的模型参数文件一致
+    mu_prisparam = params.mu_prisparam;
+    cov_prisparam = params.cov_prisparam;
+    
+    % 设置块参数
+    blocksizerow = 96;
+    blocksizecol = 96;
+    blockrowoverlap = 0;
+    blockcoloverlap = 0;
+    
+    % 处理输入图像（可以是文件路径或已加载的图像）
+    if ischar(image) || isstring(image)
+        im = imread(image);
+    else
+        im = image; % 假设传入的是已加载的图像矩阵
+    end
+    
+    % 计算质量
+    quality = computequality(im, blocksizerow, blocksizecol, blockrowoverlap, blockcoloverlap, ...
+                            mu_prisparam, cov_prisparam);
+end
