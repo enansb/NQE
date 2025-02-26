@@ -5,4 +5,4 @@ modelParamsPath = 'modelparameters.mat'; % 模型參數路徑
 
 % 在 CNN 處理後評估圖像品質
 quality = package_imageQualityFunction(imagePath, modelParamsPath);
-disp(['圖像品質分數: ', num2str(quality)]);
+disp(['圖像品質分數: ', num2str(quality)]); %disp=命令窗口中顯示（輸出）內容。 將變數轉換成字串
