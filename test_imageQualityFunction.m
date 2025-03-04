@@ -1,3 +1,4 @@
+%跟function3.m憶起使用
 function quality = imageQualityFunction(imagePath, modelParamsPath)
     % 這個函數封裝了原始 example.m 中的所有功能，並將分數正規化到0-100範圍
     % 參數:
